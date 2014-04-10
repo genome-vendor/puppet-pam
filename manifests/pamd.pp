@@ -150,6 +150,9 @@ class pam::pamd (
   $pam_ldapd_password    = false,
   $pam_ldapd_session     = false,
 
+  $pam_listfile          = false,
+  $pam_listfile_checks   = false,
+
   $pam_tally             = false,
   $pam_tally_account     = false,
   $pam_tally_auth        = false,
@@ -224,6 +227,15 @@ class pam::pamd (
     case $pam_ldapd_session {
       false:   { $pam_ldapd_session_set = $pam::params::pam_ldapd_session }
       default: { $pam_ldapd_session_set = $pam_ldapd_session }
+    }
+
+  }
+
+  if ($pam_listfile) {
+
+    case $pam_listfile_checks {
+      false: { $pam_listfile_checks_set = $pam::params::pam_listfile_checks }
+      default: { $pam_listfile_checks_set = $pam_listfile_checks }
     }
 
   }

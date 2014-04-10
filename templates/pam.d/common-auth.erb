@@ -6,6 +6,11 @@
 # /etc/pam.d/common-auth - authentication settings common to all services
 #
 
+<% if scope.lookupvar('pam::pamd::pam_listfile') == true then -%>
+  <% scope.lookupvar('pam::pamd::pam_listfile_checks_set').each do |line| -%>
+auth <%= line %>
+  <% end -%>
+<% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally') == true then -%>
 auth  <%= scope.lookupvar('pam::pamd::pam_tally_auth_set') %>
 <% end -%>

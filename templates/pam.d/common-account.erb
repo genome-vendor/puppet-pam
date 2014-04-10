@@ -3,6 +3,11 @@
 # Manual changes are likey to be overwritten
 ###############################################################################
 
+<% if scope.lookupvar('pam::pamd::pam_listfile') == true then -%>
+  <% scope.lookupvar('pam::pamd::pam_listfile_checks_set').each do |line| -%>
+account <%= line %>
+  <% end -%>
+<% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally2') == true then -%>
 account	<%= scope.lookupvar('pam::pamd::pam_tally2_account_set') %>
 <% end -%>
