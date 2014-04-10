@@ -7,9 +7,9 @@
 #
 
 <% if scope.lookupvar('pam::pamd::pam_listfile') == true then -%>
-  <% scope.lookupvar('pam::pamd::pam_listfile_checks_set').each do |line| -%>
+<% scope.lookupvar('pam::pamd::pam_listfile_checks_set').each do |line| -%>
 auth <%= line %>
-  <% end -%>
+<% end -%>
 <% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally') == true then -%>
 auth  <%= scope.lookupvar('pam::pamd::pam_tally_auth_set') %>
