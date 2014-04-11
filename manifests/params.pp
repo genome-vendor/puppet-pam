@@ -23,6 +23,8 @@ class pam::params {
 
       $ldap_conf             = '/etc/ldap/ldap.conf'
 
+      $pam_listfile_checks   = []
+
       $pam_tally_account     = 'required      pam_tally.so'
       $pam_tally_auth        = 'required      pam_tally.so deny=3 onerr=fail'
 
@@ -67,6 +69,8 @@ class pam::params {
 
       $ldap_conf             = '/etc/openldap/ldap.conf'
 
+      $pam_listfile_checks   = []
+
       $pam_tally_account     = 'required      pam_tally.so'
       $pam_tally_auth        = 'required      pam_tally.so deny=3 onerr=fail'
 
@@ -97,6 +101,8 @@ class pam::params {
       $pam_ldapd_session     = false
 
       $ldap_conf             = '/etc/openldap/ldap.conf'
+
+      $pam_listfile_checks   = []
 
       $pam_tally_account     = 'required      pam_tally.so'
       $pam_tally_auth        = 'required      pam_tally.so deny=3 onerr=fail'
