@@ -180,8 +180,10 @@ class pam::pamd (
     #Class['ldap'] -> Class['pam::pamd']
 
     if($pam::params::package_pam_ldap) {
-      package { $pam::params::package_pam_ldap:
-        ensure => present,
+      if (!defined(Package[$pam::params::package_pam_ldap])) {
+        package { $pam::params::package_pam_ldap:
+          ensure => present,
+        }
       }
     }
 
