@@ -3,11 +3,16 @@
 # Manual changes are likey to be overwritten
 ###############################################################################
 
+<% if scope.lookupvar('pam::pamd::pam_listfile') == true then -%>
+<% scope.lookupvar('pam::pamd::pam_listfile_checks_set').each do |line| -%>
+auth    <%= line %>
+<% end -%>
+<% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally') == true then -%>
-auth  <%= scope.lookupvar('pam::pamd::pam_tally_auth_set') %>
+auth    <%= scope.lookupvar('pam::pamd::pam_tally_auth_set') %>
 <% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally2') == true then -%>
-auth  <%= scope.lookupvar('pam::pamd::pam_tally2_auth_set') %>
+auth    <%= scope.lookupvar('pam::pamd::pam_tally2_auth_set') %>
 <% end -%>
 auth        required      pam_env.so
 auth        sufficient    pam_unix.so nullok try_first_pass
@@ -17,16 +22,21 @@ auth  <%= scope.lookupvar('pam::pamd::pam_ldap_auth_set') %>
 <% end -%>
 auth        required      pam_deny.so
 
+<% if scope.lookupvar('pam::pamd::pam_listfile') == true then -%>
+<% scope.lookupvar('pam::pamd::pam_listfile_checks_set').each do |line| -%>
+account     <%= line %>
+<% end -%>
+<% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally') == true then -%>
-account	<%= scope.lookupvar('pam::pamd::pam_tally_account_set') %>
+account     <%= scope.lookupvar('pam::pamd::pam_tally_account_set') %>
 <% end -%>
 <% if scope.lookupvar('pam::pamd::pam_tally2') == true then -%>
-account	<%= scope.lookupvar('pam::pamd::pam_tally2_account_set') %>
+account     <%= scope.lookupvar('pam::pamd::pam_tally2_account_set') %>
 <% end -%>
 account     required      pam_unix.so broken_shadow
 account     sufficient    pam_succeed_if.so uid < 500 quiet
 <% if scope.lookupvar('pam::pamd::pam_ldap') == true then -%>
-account	<%= scope.lookupvar('pam::pamd::pam_ldap_account_set') %>
+account     <%= scope.lookupvar('pam::pamd::pam_ldap_account_set') %>
 <% end -%>
 account     required      pam_permit.so
 
@@ -42,6 +52,6 @@ session     required      pam_limits.so
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
 session     required      pam_unix.so
 <% if scope.lookupvar('pam::pamd::pam_ldap') == true then -%>
-session	<%= scope.lookupvar('pam::pamd::pam_ldap_session_set') %>
+session <%= scope.lookupvar('pam::pamd::pam_ldap_session_set') %>
 <% end -%>
 
