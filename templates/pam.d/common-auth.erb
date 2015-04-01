@@ -18,4 +18,7 @@ auth	[success=2 default=ignore]	pam_unix.so nullok_secure
 auth  <%= scope.lookupvar('pam::pamd::pam_ldap_auth_set') %>
 <% end -%>
 auth	requisite			pam_deny.so
+<% if scope.lookupvar('pam::pamd::pam_kerberos') == true then -%>
+auth optional pam_krb5.so use_first_pass
+<% end -%>
 auth	required			pam_permit.so

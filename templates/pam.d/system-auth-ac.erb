@@ -15,6 +15,9 @@ auth        requisite     pam_succeed_if.so uid >= 500 quiet
 <% if scope.lookupvar('pam::pamd::pam_ldap') == true then -%>
 auth  <%= scope.lookupvar('pam::pamd::pam_ldap_auth_set') %>
 <% end -%>
+<% if scope.lookupvar('pam::pamd::pam_kerberos') == true then -%>
+auth optional pam_krb5.so use_first_pass
+<% end -%>
 auth        required      pam_deny.so
 
 <% if scope.lookupvar('pam::pamd::pam_tally') == true then -%>
@@ -27,6 +30,9 @@ account     required      pam_unix.so broken_shadow
 account     sufficient    pam_succeed_if.so uid < 500 quiet
 <% if scope.lookupvar('pam::pamd::pam_ldap') == true then -%>
 account	<%= scope.lookupvar('pam::pamd::pam_ldap_account_set') %>
+<% end -%>
+<% if scope.lookupvar('pam::pamd::pam_kerberos') == true then -%>
+auth optional pam_krb5.so use_first_pass
 <% end -%>
 account     required      pam_permit.so
 

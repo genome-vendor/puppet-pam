@@ -164,6 +164,8 @@ class pam::pamd (
   $pam_mkhomedir         = false,
   $pam_mkhomedir_session = false,
 
+  $pam_kerberos          = false,
+
   $enable_motd           = false) {
 
   include pam::params
