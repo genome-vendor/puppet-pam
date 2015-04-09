@@ -19,6 +19,6 @@ auth  <%= scope.lookupvar('pam::pamd::pam_ldap_auth_set') %>
 <% end -%>
 auth	requisite			pam_deny.so
 <% if scope.lookupvar('pam::pamd::pam_kerberos') == true then -%>
-auth optional pam_krb5.so use_first_pass
+auth <%= scope.lookupvar('pam::pamd::pam_kerberos_auth_set') %>
 <% end -%>
 auth	required			pam_permit.so

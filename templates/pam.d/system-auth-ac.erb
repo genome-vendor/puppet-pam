@@ -16,7 +16,7 @@ auth        requisite     pam_succeed_if.so uid >= 500 quiet
 auth  <%= scope.lookupvar('pam::pamd::pam_ldap_auth_set') %>
 <% end -%>
 <% if scope.lookupvar('pam::pamd::pam_kerberos') == true then -%>
-auth optional pam_krb5.so use_first_pass
+auth <%= scope.lookupvar('pam::pamd::pam_kerberos_auth_set') %>
 <% end -%>
 auth        required      pam_deny.so
 

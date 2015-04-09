@@ -165,6 +165,7 @@ class pam::pamd (
   $pam_mkhomedir_session = false,
 
   $pam_kerberos          = false,
+  $pam_kerberos_auth     = false,
 
   $enable_motd           = false) {
 
@@ -240,6 +241,15 @@ class pam::pamd (
     case $pam_tally_auth {
       false:   { $pam_tally_auth_set = $pam::params::pam_tally_auth }
       default: { $pam_tally_auth_set = $pam_tally_auth }
+    }
+
+  }
+
+  if($pam_kerberos) {
+
+    case $pam_kerberos_auth {
+      false:   { $pam_kerberos_auth_set = $pam::params::pam_kerberos_auth }
+      default: { $pam_kerberos_auth_set = $pam_kerberos_auth }
     }
 
   }
