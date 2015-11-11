@@ -97,6 +97,10 @@
 #  UNTESTED
 #  *Optional* defaults to false
 #
+#  [pam_limits]
+#  UNTESTED
+#  *Optional* defaults to false
+#
 #  [enable_motd]
 #    Use motd to report the usage of this module.
 #    *Requires*: https://github.com/torian/puppet-motd.git
@@ -163,6 +167,8 @@ class pam::pamd (
 
   $pam_mkhomedir         = false,
   $pam_mkhomedir_session = false,
+
+  $pam_limits            = false,
 
   $enable_motd           = false) {
 

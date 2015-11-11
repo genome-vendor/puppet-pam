@@ -44,4 +44,7 @@ session     required      pam_unix.so
 <% if scope.lookupvar('pam::pamd::pam_ldap') == true then -%>
 session	<%= scope.lookupvar('pam::pamd::pam_ldap_session_set') %>
 <% end -%>
+<% if scope.lookupvar('pam::pamd::pam_limits') == true then -%>
+session     required      pam_limits.so
+<% end -%>
 
